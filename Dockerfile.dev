@@ -1,0 +1,16 @@
+FROM node:alpine
+
+WORKDIR /app
+
+COPY package.json .
+COPY yarn.lock .
+
+RUN yarn install --force
+
+COPY . .
+
+RUN yarn run build
+
+EXPOSE 2222
+
+CMD ["yarn", "docker"]
